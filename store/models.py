@@ -26,7 +26,7 @@ class Customer(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=7) # This is 7 digits (including decimal point) 99999.99
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE) # on_delete=CASCADE will delete the product if its category got deleted
     description = models.CharField(max_length=200, default='', blank=True, null=True)
     image = models.ImageField(upload_to='uploads/product')
 
