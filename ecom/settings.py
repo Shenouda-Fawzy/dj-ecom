@@ -118,6 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = ['static/']
 
 # Configure upload path and URL
 # this man the base url for the media upload will be '{domain}/media'
