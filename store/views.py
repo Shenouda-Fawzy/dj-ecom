@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Product
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -14,17 +14,27 @@ def About(request):
     return render(request, 'about.html')
 
 def Login_User(request):
-    # if request.method == "POST":
-    #     username = request.POST['username']
-    #     password = request.POST['password']
-    #     user = authenticate(request, username=username, password=password)
-    #     if user is not None:
-    #         login(request, user)
-    #         messages.success(request, "You have successfully logged in")
-    #         return redirect('home')
-    #     else:
-    #         messages.error(request, "Invalid username or password")
-    return render(request, 'login.html')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            flash_success(request, "You have successfully logged in")
+            return redirect('store:home')
+        else:
+            flash_error(request, "Invalid username or password")
+            return redirect('store:home')
+    else:
+        return render(request, 'login.html')
 
 def Logout_User(request):
-    pass
+    logout(request)
+    messages.success(request, "You have successfully logged out")
+    return redirect('store:home')
+
+def flash_error(request, msg):
+    messages.error(request, msg, extra_tags="alert alert-danger")
+
+def flash_success(request, msg):
+    messages.success(request, msg, extra_tags="alert alert-success")
