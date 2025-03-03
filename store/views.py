@@ -30,7 +30,7 @@ def Login_User(request):
 
 def Logout_User(request):
     logout(request)
-    messages.success(request, "You have successfully logged out")
+    flash_success(request, "You have successfully logged out")
     return redirect('store:home')
 
 def flash_error(request, msg):
