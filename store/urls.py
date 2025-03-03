@@ -6,4 +6,6 @@ app_name = 'store'
 urlpatterns = [
     path('', views.Home, name="home"),
     path('about/', views.About, name="about"),
+    path('login/', views.Login_User, name="login"),
+    path('logout/', views.Logout_User, name="logout"),
 ]
