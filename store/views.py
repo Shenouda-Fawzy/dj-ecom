@@ -33,6 +33,9 @@ def Logout_User(request):
     flash_success(request, "You have successfully logged out")
     return redirect('store:home')
 
+def Register(request):
+    pass
+
 def flash_error(request, msg):
     messages.error(request, msg, extra_tags="alert alert-danger")
 
