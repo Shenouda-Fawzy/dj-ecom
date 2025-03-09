@@ -3,15 +3,15 @@ from .models import Product
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 
-# Create your views here.
 
 def Home(request):
     products = Product.objects.all()
-    return render(request, 'home.html', {"products":products})
+    return render(request, 'home.html', {"products": products})
 
 
 def About(request):
     return render(request, 'about.html')
+
 
 def Login_User(request):
     if request.method == "POST":
@@ -28,16 +28,20 @@ def Login_User(request):
     else:
         return render(request, 'login.html')
 
+
 def Logout_User(request):
     logout(request)
     flash_success(request, "You have successfully logged out")
     return redirect('store:home')
 
+
 def Register(request):
     pass
 
+
 def flash_error(request, msg):
     messages.error(request, msg, extra_tags="alert alert-danger")
+
 
 def flash_success(request, msg):
     messages.success(request, msg, extra_tags="alert alert-success")
