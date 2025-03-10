@@ -2,6 +2,10 @@ from django.shortcuts import redirect, render
 from .models import Product
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django import forms
+from .forms import SignupForm
 
 
 def Home(request):
@@ -35,8 +39,26 @@ def Logout_User(request):
     return redirect('store:home')
 
 
-def Register(request):
-    pass
+def Register_User(request):
+    form = SignupForm()
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            
+            # Save creates and saves a database object from the data bound to the form
+            form.save()
+            
+            # Authenticating and login the user
+            username = form.cleaned_data["user_name"]
+            password = form.cleaned_data["password1"]
+            user = authenticate(username=username, password=password)
+            login(request, user)
+
+            flash_success(request, "You've registered successfully!")
+            return redirect("store:home")
+    else:
+        flash_success(request, "Whoops there was a problem registering!! please try again")
+        return render(request, "register.html")
 
 
 def flash_error(request, msg):
