@@ -47,13 +47,17 @@ def Register_User(request):
             form.save()
             
             # Authenticating and login the user
-            username = form.cleaned_data["user_name"]
+            username = form.cleaned_data["username"]
             password = form.cleaned_data["password1"]
             user = authenticate(username=username, password=password)
             login(request, user)
 
             flash_success(request, "You've registered successfully!")
             return redirect("store:home")
+        else:
+            print(form.errors)
+            flash_error(request, "Something wrong had happened")
+            return redirect("store:register")
     else:
         return render(request, "register.html", {"form": form})
 
