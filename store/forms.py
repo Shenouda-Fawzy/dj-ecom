@@ -22,8 +22,9 @@ class SignupForm(UserCreationForm):
         # this case this is the User model from Django auth system
         model = User
 
-        # This to associate the form fields with the User model
-        # this is also will specify the order of display
+        # This is the parameter that controls what elements to be displayed
+        # and in which order should be displayed. If we didn't add any styling
+        # through widget, then the standard Django styling will be applied instead.
         fields = ('username', 'first_name', 'last_name',
                   'email', 'password1', 'password2')
         
