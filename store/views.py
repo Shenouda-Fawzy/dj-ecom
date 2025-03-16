@@ -3,8 +3,6 @@ from .models import Product
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
-from django import forms
 from .forms import SignupForm
 
 
@@ -57,8 +55,7 @@ def Register_User(request):
             flash_success(request, "You've registered successfully!")
             return redirect("store:home")
     else:
-        flash_success(request, "Whoops there was a problem registering!! please try again")
-        return render(request, "register.html")
+        return render(request, "register.html", {"form": form})
 
 
 def flash_error(request, msg):

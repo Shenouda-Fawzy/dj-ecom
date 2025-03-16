@@ -9,7 +9,7 @@
             <h2 class="mt-2">Register</h2>
             <form method="post">
                 {% csrf_token %}
-                {{ from.as_p }}
+                {{ form.as_p }}
                 <button type="submit" class="btn btn-secondary mt-2">Create</button>
             </form>
         </div>
