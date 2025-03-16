@@ -25,8 +25,8 @@ class SignupForm(UserCreationForm):
         # This is the parameter that controls what elements to be displayed
         # and in which order should be displayed. If we didn't add any styling
         # through widget, then the standard Django styling will be applied instead.
-        fields = ('username', 'first_name', 'last_name',
-                  'email', 'password1', 'password2')
+        fields = ['username', 'first_name', 'last_name',
+                  'email', 'password1', 'password2']
         
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)
